@@ -384,7 +384,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  Pet: 'Pet'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +401,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user"
+    modelProps: "user" | "pet"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -478,6 +479,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Pet: {
+      payload: Prisma.$PetPayload<ExtArgs>
+      fields: Prisma.PetFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PetFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PetPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PetFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PetPayload>
+        }
+        findFirst: {
+          args: Prisma.PetFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PetPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PetFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PetPayload>
+        }
+        findMany: {
+          args: Prisma.PetFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PetPayload>[]
+        }
+        create: {
+          args: Prisma.PetCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PetPayload>
+        }
+        createMany: {
+          args: Prisma.PetCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PetCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PetPayload>[]
+        }
+        delete: {
+          args: Prisma.PetDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PetPayload>
+        }
+        update: {
+          args: Prisma.PetUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PetPayload>
+        }
+        deleteMany: {
+          args: Prisma.PetDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PetUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PetUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PetPayload>[]
+        }
+        upsert: {
+          args: Prisma.PetUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PetPayload>
+        }
+        aggregate: {
+          args: Prisma.PetAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePet>
+        }
+        groupBy: {
+          args: Prisma.PetGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PetGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PetCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PetCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -529,6 +604,21 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const PetScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  breed: 'breed',
+  age: 'age',
+  notes: 'notes',
+  ownerId: 'ownerId',
+  petCode: 'petCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PetScalarFieldEnum = (typeof PetScalarFieldEnum)[keyof typeof PetScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -718,6 +808,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  pet?: Prisma.PetOmit
 }
 
 /* Types for Logging */

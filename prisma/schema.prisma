@@ -40,10 +40,11 @@ model User {
 model Pet {
     id      String @id @default(uuid())
     name    String
-    breed   String  
+    breed   String
     age     String
     notes   String
     ownerId String
+    petCode String @unique
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -51,5 +52,6 @@ model Pet {
     // relation : 1 to many (1 owner TO one or multiple pets)
     owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 
+    @@unique([name, breed, age, ownerId])
     @@map("pets")
 }
