@@ -12,7 +12,7 @@ export enum UserRole {
 
 
 const auth = (...roles: UserRole[]) =>{
-    console.log(roles);
+    // console.log(roles);
     return async(req:Request, res:Response, next:NextFunction)=>{
         try{
             // check token existence
