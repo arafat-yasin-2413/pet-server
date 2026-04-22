@@ -20,6 +20,12 @@ const createPet = async (
     return result;
 };
 
+const getAllPets = async()=>{
+    const result = await prisma.pet.findMany();
+    return result;
+}
+
 export const PetService = {
     createPet,
+    getAllPets,
 };
