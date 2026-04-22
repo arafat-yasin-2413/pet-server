@@ -19,6 +19,8 @@ enum Status {
     SUSPENDED
 }
 
+// One User - one / multiple pets
+
 model User {
     id       String @id @default(uuid())
     name     String
@@ -29,7 +31,25 @@ model User {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    pets      Pet[]
 
-	@@index([status])
-	@@map("users")
+    @@index([status])
+    @@map("users")
+}
+
+model Pet {
+    id      String @id @default(uuid())
+    name    String
+    breed   String  
+    age     String
+    notes   String
+    ownerId String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // relation : 1 to many (1 owner TO one or multiple pets)
+    owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+    @@map("pets")
 }
