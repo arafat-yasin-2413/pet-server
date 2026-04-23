@@ -25,52 +25,52 @@ const createSitter = async(req: Request, res: Response) => {
     }
 };
 
-// const getAllSitter = async(req: Request, res: Response) => {
-//     try {    
-//         const result = await PetService.getAllPets();
+const getAllSitter = async(req: Request, res: Response) => {
+    try {    
+        const result = await SitterService.getAllSitter();
         
-//         return res.status(200).json({
-//             success: true,
-//             message: "Get All Pets Successful.",
-//             data: result,
-//         });
-//     } catch (error: any) {
-//         // return res.status(error.statusCode||400).json({
-//         //     success: false,
-//         //     message: error.message || "User login failed",
+        return res.status(200).json({
+            success: true,
+            message: "Getting all sitter successfull.",
+            data: result,
+        });
+    } catch (error: any) {
+        // return res.status(error.statusCode||400).json({
+        //     success: false,
+        //     message: error.message || "User login failed",
 
-//         // });
-//         return res.status(400).json({
-//             success: false,
-//             message: error.message,
-//         });
-//     }
-// };
+        // });
+        return res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
 
-// const getSingleSitter = async(req:Request, res:Response) =>{
-// try {    
-//         const petId = req.params.id;
-//         const result = await PetService.getSinglePet(petId as string);
+const getSingleSitter = async(req:Request, res:Response) =>{
+try {    
+        const result = await SitterService.getSingleSitter(req.user?.id);
         
-//         return res.status(200).json({
-//             success: true,
-//             message: "Get Pet Details Successful.",
-//             data: result,
-//         });
-//     } catch (error: any) {
-//         // return res.status(error.statusCode||400).json({
-//         //     success: false,
-//         //     message: error.message || "User login failed",
+        return res.status(200).json({
+            success: true,
+            message: "Getting sitter profile Successful.",
+            data: result,
+        });
+    } catch (error: any) {
+        // return res.status(error.statusCode||400).json({
+        //     success: false,
+        //     message: error.message || "User login failed",
 
-//         // });
-//         return res.status(400).json({
-//             success: false,
-//             message: error.message,
-//         });
-//     }    
-// }
+        // });
+        return res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }    
+}
 
 export const SitterController = {
     createSitter,
-    
+    getAllSitter,
+    getSingleSitter,
 };

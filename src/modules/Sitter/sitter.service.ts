@@ -29,19 +29,33 @@ const createSitter = async (
 };
 
 const getAllSitter = async()=>{
-    const result = await prisma.pet.findMany();
+    const result = await prisma.sitterProfile.findMany();
     return result;
 }
 
-const getSingleSitter = async(id:string) =>{
-    console.log('get single pet : ', id);
+const getSingleSitter = async(userId:string) =>{
 
-    const result = await prisma.pet.findUnique({
+    const user = await prisma.user.findUnique({
         where: {
-            id
+            id: userId,
         }
     })
+
+    if(!user) {
+        throw new Error("User does not found with the given id.");
+    }
+
+    const result = await prisma.sitterProfile.findUnique({
+        where: {
+            sitterId: userId
+        },
+        include: {
+            user: true,
+        }
+    });
+
     return result;
+
 }
 
 export const SitterService = {
