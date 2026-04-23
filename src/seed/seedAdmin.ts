@@ -31,6 +31,9 @@ const seedAdmin = async () => {
     } catch (error: any) {
         console.error(error);
     }
+    finally{
+        await prisma.$disconnect()
+    }
 };
 
 

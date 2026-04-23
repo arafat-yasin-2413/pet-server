@@ -37,7 +37,7 @@ const createUser = async (payload: {
 };
 
 const userLogin = async (payload: { email: string; password: string }) => {
-    console.log("user login service", payload);
+    // console.log("user login service", payload);
 
     const isUserExist = await prisma.user.findUnique({
         where: {

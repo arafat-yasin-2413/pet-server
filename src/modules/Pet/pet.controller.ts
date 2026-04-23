@@ -47,7 +47,31 @@ const getAllPets = async(req: Request, res: Response) => {
     }
 };
 
+const getMyPets = async(req: Request, res: Response) => {
+    try {    
+        const userId = req.user?.id;
+        const result = await PetService.getMyPets(userId);
+        
+        return res.status(200).json({
+            success: true,
+            message: "Get My Pets Successful.",
+            data: result,
+        });
+    } catch (error: any) {
+        // return res.status(error.statusCode||400).json({
+        //     success: false,
+        //     message: error.message || "User login failed",
+
+        // });
+        return res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
 export const PetController = {
     createPet,
     getAllPets,
+    getMyPets,
 };

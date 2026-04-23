@@ -25,7 +25,22 @@ const getAllPets = async()=>{
     return result;
 }
 
+const getMyPets = async(userId:string)=>{
+    console.log('get my pets service : ', userId);
+
+    const result = await prisma.pet.findMany({
+        where: {
+            ownerId : userId
+        }
+    })
+
+    // console.log('Printing result : ', result) // []
+
+    return result;
+}
+
 export const PetService = {
     createPet,
     getAllPets,
+    getMyPets,
 };
