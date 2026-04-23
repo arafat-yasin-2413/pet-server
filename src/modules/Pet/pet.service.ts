@@ -39,8 +39,20 @@ const getMyPets = async(userId:string)=>{
     return result;
 }
 
+const getSinglePet = async(id:string) =>{
+    console.log('get single pet : ', id);
+
+    const result = await prisma.pet.findUnique({
+        where: {
+            id
+        }
+    })
+    return result;
+}
+
 export const PetService = {
     createPet,
     getAllPets,
     getMyPets,
+    getSinglePet,
 };

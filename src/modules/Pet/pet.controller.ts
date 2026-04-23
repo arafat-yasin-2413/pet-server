@@ -70,8 +70,32 @@ const getMyPets = async(req: Request, res: Response) => {
     }
 };
 
+const getSinglePet = async(req:Request, res:Response) =>{
+try {    
+        const petId = req.params.id;
+        const result = await PetService.getSinglePet(petId as string);
+        
+        return res.status(200).json({
+            success: true,
+            message: "Get Pet Details Successful.",
+            data: result,
+        });
+    } catch (error: any) {
+        // return res.status(error.statusCode||400).json({
+        //     success: false,
+        //     message: error.message || "User login failed",
+
+        // });
+        return res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }    
+}
+
 export const PetController = {
     createPet,
     getAllPets,
     getMyPets,
+    getSinglePet,
 };
