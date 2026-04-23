@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { AuthRoutes } from "../modules/Auth/auth.route";
 import { PetRoutes } from "../modules/Pet/pet.route";
+import { SitterRoute } from "../modules/Sitter/sitter.route";
 
 const router = Router();
 
@@ -15,6 +16,10 @@ const routerManager = [
     {
         path: "/pet",
         route: PetRoutes,
+    },
+    {
+        path: "/sitter",
+        route: SitterRoute,
     },
 ];
 

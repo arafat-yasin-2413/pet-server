@@ -207,6 +207,7 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   pets?: Prisma.PetListRelationFilter
+  sitterProfiles?: Prisma.SitterProfileListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -219,6 +220,7 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   pets?: Prisma.PetOrderByRelationAggregateInput
+  sitterProfiles?: Prisma.SitterProfileOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -234,6 +236,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   pets?: Prisma.PetListRelationFilter
+  sitterProfiles?: Prisma.SitterProfileListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -274,6 +277,7 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   pets?: Prisma.PetCreateNestedManyWithoutOwnerInput
+  sitterProfiles?: Prisma.SitterProfileCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -286,6 +290,7 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   pets?: Prisma.PetUncheckedCreateNestedManyWithoutOwnerInput
+  sitterProfiles?: Prisma.SitterProfileUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -298,6 +303,7 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pets?: Prisma.PetUpdateManyWithoutOwnerNestedInput
+  sitterProfiles?: Prisma.SitterProfileUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -310,6 +316,7 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pets?: Prisma.PetUncheckedUpdateManyWithoutOwnerNestedInput
+  sitterProfiles?: Prisma.SitterProfileUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -413,6 +420,20 @@ export type UserUpdateOneRequiredWithoutPetsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPetsInput, Prisma.UserUpdateWithoutPetsInput>, Prisma.UserUncheckedUpdateWithoutPetsInput>
 }
 
+export type UserCreateNestedOneWithoutSitterProfilesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSitterProfilesInput, Prisma.UserUncheckedCreateWithoutSitterProfilesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSitterProfilesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSitterProfilesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSitterProfilesInput, Prisma.UserUncheckedCreateWithoutSitterProfilesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSitterProfilesInput
+  upsert?: Prisma.UserUpsertWithoutSitterProfilesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSitterProfilesInput, Prisma.UserUpdateWithoutSitterProfilesInput>, Prisma.UserUncheckedUpdateWithoutSitterProfilesInput>
+}
+
 export type UserCreateWithoutPetsInput = {
   id?: string
   name: string
@@ -422,6 +443,7 @@ export type UserCreateWithoutPetsInput = {
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
+  sitterProfiles?: Prisma.SitterProfileCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPetsInput = {
@@ -433,6 +455,7 @@ export type UserUncheckedCreateWithoutPetsInput = {
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
+  sitterProfiles?: Prisma.SitterProfileUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPetsInput = {
@@ -460,6 +483,7 @@ export type UserUpdateWithoutPetsInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sitterProfiles?: Prisma.SitterProfileUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPetsInput = {
@@ -471,6 +495,71 @@ export type UserUncheckedUpdateWithoutPetsInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sitterProfiles?: Prisma.SitterProfileUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSitterProfilesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role: $Enums.Role
+  status?: $Enums.Status
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  pets?: Prisma.PetCreateNestedManyWithoutOwnerInput
+}
+
+export type UserUncheckedCreateWithoutSitterProfilesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role: $Enums.Role
+  status?: $Enums.Status
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  pets?: Prisma.PetUncheckedCreateNestedManyWithoutOwnerInput
+}
+
+export type UserCreateOrConnectWithoutSitterProfilesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSitterProfilesInput, Prisma.UserUncheckedCreateWithoutSitterProfilesInput>
+}
+
+export type UserUpsertWithoutSitterProfilesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSitterProfilesInput, Prisma.UserUncheckedUpdateWithoutSitterProfilesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSitterProfilesInput, Prisma.UserUncheckedCreateWithoutSitterProfilesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSitterProfilesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSitterProfilesInput, Prisma.UserUncheckedUpdateWithoutSitterProfilesInput>
+}
+
+export type UserUpdateWithoutSitterProfilesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pets?: Prisma.PetUpdateManyWithoutOwnerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSitterProfilesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pets?: Prisma.PetUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 
@@ -480,10 +569,12 @@ export type UserUncheckedUpdateWithoutPetsInput = {
 
 export type UserCountOutputType = {
   pets: number
+  sitterProfiles: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   pets?: boolean | UserCountOutputTypeCountPetsArgs
+  sitterProfiles?: boolean | UserCountOutputTypeCountSitterProfilesArgs
 }
 
 /**
@@ -503,6 +594,13 @@ export type UserCountOutputTypeCountPetsArgs<ExtArgs extends runtime.Types.Exten
   where?: Prisma.PetWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSitterProfilesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SitterProfileWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -514,6 +612,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   pets?: boolean | Prisma.User$petsArgs<ExtArgs>
+  sitterProfiles?: boolean | Prisma.User$sitterProfilesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -553,6 +652,7 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   pets?: boolean | Prisma.User$petsArgs<ExtArgs>
+  sitterProfiles?: boolean | Prisma.User$sitterProfilesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -562,6 +662,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     pets: Prisma.$PetPayload<ExtArgs>[]
+    sitterProfiles: Prisma.$SitterProfilePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -967,6 +1068,7 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   pets<T extends Prisma.User$petsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$petsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sitterProfiles<T extends Prisma.User$sitterProfilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sitterProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SitterProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1418,6 +1520,30 @@ export type User$petsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   take?: number
   skip?: number
   distinct?: Prisma.PetScalarFieldEnum | Prisma.PetScalarFieldEnum[]
+}
+
+/**
+ * User.sitterProfiles
+ */
+export type User$sitterProfilesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SitterProfile
+   */
+  select?: Prisma.SitterProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SitterProfile
+   */
+  omit?: Prisma.SitterProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SitterProfileInclude<ExtArgs> | null
+  where?: Prisma.SitterProfileWhereInput
+  orderBy?: Prisma.SitterProfileOrderByWithRelationInput | Prisma.SitterProfileOrderByWithRelationInput[]
+  cursor?: Prisma.SitterProfileWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SitterProfileScalarFieldEnum | Prisma.SitterProfileScalarFieldEnum[]
 }
 
 /**

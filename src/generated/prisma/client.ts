@@ -49,3 +49,8 @@ export type User = Prisma.UserModel
  * 
  */
 export type Pet = Prisma.PetModel
+/**
+ * Model SitterProfile
+ * 
+ */
+export type SitterProfile = Prisma.SitterProfileModel

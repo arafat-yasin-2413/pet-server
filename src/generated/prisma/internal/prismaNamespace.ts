@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.7.0
- * Query Engine version: 75cbdc1eb7150937890ad5465d861175c6624711
+ * Prisma Client JS version: 7.8.0
+ * Query Engine version: 3c6e192761c0362d496ed980de936e2f3cebcd3a
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.7.0",
-  engine: "75cbdc1eb7150937890ad5465d861175c6624711"
+  client: "7.8.0",
+  engine: "3c6e192761c0362d496ed980de936e2f3cebcd3a"
 }
 
 /**
@@ -385,7 +385,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
-  Pet: 'Pet'
+  Pet: 'Pet',
+  SitterProfile: 'SitterProfile'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -401,7 +402,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "pet"
+    modelProps: "user" | "pet" | "sitterProfile"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -553,6 +554,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SitterProfile: {
+      payload: Prisma.$SitterProfilePayload<ExtArgs>
+      fields: Prisma.SitterProfileFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SitterProfileFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SitterProfilePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SitterProfileFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SitterProfilePayload>
+        }
+        findFirst: {
+          args: Prisma.SitterProfileFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SitterProfilePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SitterProfileFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SitterProfilePayload>
+        }
+        findMany: {
+          args: Prisma.SitterProfileFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SitterProfilePayload>[]
+        }
+        create: {
+          args: Prisma.SitterProfileCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SitterProfilePayload>
+        }
+        createMany: {
+          args: Prisma.SitterProfileCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SitterProfileCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SitterProfilePayload>[]
+        }
+        delete: {
+          args: Prisma.SitterProfileDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SitterProfilePayload>
+        }
+        update: {
+          args: Prisma.SitterProfileUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SitterProfilePayload>
+        }
+        deleteMany: {
+          args: Prisma.SitterProfileDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SitterProfileUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SitterProfileUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SitterProfilePayload>[]
+        }
+        upsert: {
+          args: Prisma.SitterProfileUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SitterProfilePayload>
+        }
+        aggregate: {
+          args: Prisma.SitterProfileAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSitterProfile>
+        }
+        groupBy: {
+          args: Prisma.SitterProfileGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SitterProfileGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SitterProfileCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SitterProfileCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -621,6 +696,19 @@ export const PetScalarFieldEnum = {
 export type PetScalarFieldEnum = (typeof PetScalarFieldEnum)[keyof typeof PetScalarFieldEnum]
 
 
+export const SitterProfileScalarFieldEnum = {
+  id: 'id',
+  bio: 'bio',
+  experience: 'experience',
+  hourlyRate: 'hourlyRate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  sitterId: 'sitterId'
+} as const
+
+export type SitterProfileScalarFieldEnum = (typeof SitterProfileScalarFieldEnum)[keyof typeof SitterProfileScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -635,6 +723,14 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 
@@ -710,6 +806,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -805,10 +915,26 @@ export type PrismaClientOptions = ({
    * ```
    */
   comments?: runtime.SqlCommenterPlugin[]
+  /**
+   * Optional maximum size for the query plan cache. If not provided, a default size will be used.
+   * A value of `0` can be used to disable the cache entirely. A higher cache size can improve
+   * performance for applications that execute a large number of unique queries, while a smaller
+   * cache size can reduce memory usage.
+   * 
+   * @example
+   * ```
+   * const prisma = new PrismaClient({
+   *   adapter,
+   *   queryPlanCacheMaxSize: 100,
+   * })
+   * ```
+   */
+  queryPlanCacheMaxSize?: number
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   pet?: Prisma.PetOmit
+  sitterProfile?: Prisma.SitterProfileOmit
 }
 
 /* Types for Logging */
