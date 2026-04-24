@@ -32,3 +32,8 @@ export type Pet = Prisma.PetModel
  * 
  */
 export type SitterProfile = Prisma.SitterProfileModel
+/**
+ * Model Service
+ * 
+ */
+export type Service = Prisma.ServiceModel

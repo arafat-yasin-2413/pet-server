@@ -11,4 +11,5 @@
 export type * from './models/User'
 export type * from './models/Pet'
 export type * from './models/SitterProfile'
+export type * from './models/Service'
 export type * from './commonInputTypes'

@@ -19,6 +19,13 @@ enum Status {
     SUSPENDED
 }
 
+enum ServiceType {
+    WALKING
+    BOARDING
+    DAYCARE
+    SITTING
+}
+
 // One User - one / multiple pets
 
 model User {
@@ -65,6 +72,21 @@ model SitterProfile {
     createdAt  DateTime @default(now())
     updatedAt  DateTime @updatedAt
 
-    sitterId String @unique
-    user     User   @relation(fields: [sitterId], references: [id])
+    sitterId String    @unique
+    user     User      @relation(fields: [sitterId], references: [id])
+    services Service[]
+}
+
+model Service {
+    id          String      @id @default(uuid())
+    serviceType ServiceType
+    price       Float
+    description String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    sitterId    String
+    
+    sitter SitterProfile @relation(fields: [sitterId], references: [id])
 }
