@@ -59,3 +59,8 @@ export type SitterProfile = Prisma.SitterProfileModel
  * 
  */
 export type Service = Prisma.ServiceModel
+/**
+ * Model Booking
+ * 
+ */
+export type Booking = Prisma.BookingModel

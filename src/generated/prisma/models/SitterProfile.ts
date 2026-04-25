@@ -238,6 +238,7 @@ export type SitterProfileWhereInput = {
   sitterId?: Prisma.StringFilter<"SitterProfile"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   services?: Prisma.ServiceListRelationFilter
+  bookings?: Prisma.BookingListRelationFilter
 }
 
 export type SitterProfileOrderByWithRelationInput = {
@@ -250,6 +251,7 @@ export type SitterProfileOrderByWithRelationInput = {
   sitterId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   services?: Prisma.ServiceOrderByRelationAggregateInput
+  bookings?: Prisma.BookingOrderByRelationAggregateInput
 }
 
 export type SitterProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -265,6 +267,7 @@ export type SitterProfileWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"SitterProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   services?: Prisma.ServiceListRelationFilter
+  bookings?: Prisma.BookingListRelationFilter
 }, "id" | "sitterId">
 
 export type SitterProfileOrderByWithAggregationInput = {
@@ -304,6 +307,7 @@ export type SitterProfileCreateInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutSitterProfilesInput
   services?: Prisma.ServiceCreateNestedManyWithoutSitterInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutSitterInput
 }
 
 export type SitterProfileUncheckedCreateInput = {
@@ -315,6 +319,7 @@ export type SitterProfileUncheckedCreateInput = {
   updatedAt?: Date | string
   sitterId: string
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutSitterInput
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutSitterInput
 }
 
 export type SitterProfileUpdateInput = {
@@ -326,6 +331,7 @@ export type SitterProfileUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutSitterProfilesNestedInput
   services?: Prisma.ServiceUpdateManyWithoutSitterNestedInput
+  bookings?: Prisma.BookingUpdateManyWithoutSitterNestedInput
 }
 
 export type SitterProfileUncheckedUpdateInput = {
@@ -337,6 +343,7 @@ export type SitterProfileUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sitterId?: Prisma.StringFieldUpdateOperationsInput | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutSitterNestedInput
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutSitterNestedInput
 }
 
 export type SitterProfileCreateManyInput = {
@@ -495,6 +502,20 @@ export type SitterProfileUpdateOneRequiredWithoutServicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SitterProfileUpdateToOneWithWhereWithoutServicesInput, Prisma.SitterProfileUpdateWithoutServicesInput>, Prisma.SitterProfileUncheckedUpdateWithoutServicesInput>
 }
 
+export type SitterProfileCreateNestedOneWithoutBookingsInput = {
+  create?: Prisma.XOR<Prisma.SitterProfileCreateWithoutBookingsInput, Prisma.SitterProfileUncheckedCreateWithoutBookingsInput>
+  connectOrCreate?: Prisma.SitterProfileCreateOrConnectWithoutBookingsInput
+  connect?: Prisma.SitterProfileWhereUniqueInput
+}
+
+export type SitterProfileUpdateOneRequiredWithoutBookingsNestedInput = {
+  create?: Prisma.XOR<Prisma.SitterProfileCreateWithoutBookingsInput, Prisma.SitterProfileUncheckedCreateWithoutBookingsInput>
+  connectOrCreate?: Prisma.SitterProfileCreateOrConnectWithoutBookingsInput
+  upsert?: Prisma.SitterProfileUpsertWithoutBookingsInput
+  connect?: Prisma.SitterProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SitterProfileUpdateToOneWithWhereWithoutBookingsInput, Prisma.SitterProfileUpdateWithoutBookingsInput>, Prisma.SitterProfileUncheckedUpdateWithoutBookingsInput>
+}
+
 export type SitterProfileCreateWithoutUserInput = {
   id?: string
   bio: string
@@ -503,6 +524,7 @@ export type SitterProfileCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   services?: Prisma.ServiceCreateNestedManyWithoutSitterInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutSitterInput
 }
 
 export type SitterProfileUncheckedCreateWithoutUserInput = {
@@ -513,6 +535,7 @@ export type SitterProfileUncheckedCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutSitterInput
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutSitterInput
 }
 
 export type SitterProfileCreateOrConnectWithoutUserInput = {
@@ -562,6 +585,7 @@ export type SitterProfileCreateWithoutServicesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutSitterProfilesInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutSitterInput
 }
 
 export type SitterProfileUncheckedCreateWithoutServicesInput = {
@@ -572,6 +596,7 @@ export type SitterProfileUncheckedCreateWithoutServicesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   sitterId: string
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutSitterInput
 }
 
 export type SitterProfileCreateOrConnectWithoutServicesInput = {
@@ -598,6 +623,7 @@ export type SitterProfileUpdateWithoutServicesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutSitterProfilesNestedInput
+  bookings?: Prisma.BookingUpdateManyWithoutSitterNestedInput
 }
 
 export type SitterProfileUncheckedUpdateWithoutServicesInput = {
@@ -608,6 +634,67 @@ export type SitterProfileUncheckedUpdateWithoutServicesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sitterId?: Prisma.StringFieldUpdateOperationsInput | string
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutSitterNestedInput
+}
+
+export type SitterProfileCreateWithoutBookingsInput = {
+  id?: string
+  bio: string
+  experience: number
+  hourlyRate?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutSitterProfilesInput
+  services?: Prisma.ServiceCreateNestedManyWithoutSitterInput
+}
+
+export type SitterProfileUncheckedCreateWithoutBookingsInput = {
+  id?: string
+  bio: string
+  experience: number
+  hourlyRate?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sitterId: string
+  services?: Prisma.ServiceUncheckedCreateNestedManyWithoutSitterInput
+}
+
+export type SitterProfileCreateOrConnectWithoutBookingsInput = {
+  where: Prisma.SitterProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.SitterProfileCreateWithoutBookingsInput, Prisma.SitterProfileUncheckedCreateWithoutBookingsInput>
+}
+
+export type SitterProfileUpsertWithoutBookingsInput = {
+  update: Prisma.XOR<Prisma.SitterProfileUpdateWithoutBookingsInput, Prisma.SitterProfileUncheckedUpdateWithoutBookingsInput>
+  create: Prisma.XOR<Prisma.SitterProfileCreateWithoutBookingsInput, Prisma.SitterProfileUncheckedCreateWithoutBookingsInput>
+  where?: Prisma.SitterProfileWhereInput
+}
+
+export type SitterProfileUpdateToOneWithWhereWithoutBookingsInput = {
+  where?: Prisma.SitterProfileWhereInput
+  data: Prisma.XOR<Prisma.SitterProfileUpdateWithoutBookingsInput, Prisma.SitterProfileUncheckedUpdateWithoutBookingsInput>
+}
+
+export type SitterProfileUpdateWithoutBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.IntFieldUpdateOperationsInput | number
+  hourlyRate?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutSitterProfilesNestedInput
+  services?: Prisma.ServiceUpdateManyWithoutSitterNestedInput
+}
+
+export type SitterProfileUncheckedUpdateWithoutBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.IntFieldUpdateOperationsInput | number
+  hourlyRate?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sitterId?: Prisma.StringFieldUpdateOperationsInput | string
+  services?: Prisma.ServiceUncheckedUpdateManyWithoutSitterNestedInput
 }
 
 export type SitterProfileCreateManyUserInput = {
@@ -627,6 +714,7 @@ export type SitterProfileUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   services?: Prisma.ServiceUpdateManyWithoutSitterNestedInput
+  bookings?: Prisma.BookingUpdateManyWithoutSitterNestedInput
 }
 
 export type SitterProfileUncheckedUpdateWithoutUserInput = {
@@ -637,6 +725,7 @@ export type SitterProfileUncheckedUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutSitterNestedInput
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutSitterNestedInput
 }
 
 export type SitterProfileUncheckedUpdateManyWithoutUserInput = {
@@ -655,10 +744,12 @@ export type SitterProfileUncheckedUpdateManyWithoutUserInput = {
 
 export type SitterProfileCountOutputType = {
   services: number
+  bookings: number
 }
 
 export type SitterProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   services?: boolean | SitterProfileCountOutputTypeCountServicesArgs
+  bookings?: boolean | SitterProfileCountOutputTypeCountBookingsArgs
 }
 
 /**
@@ -678,6 +769,13 @@ export type SitterProfileCountOutputTypeCountServicesArgs<ExtArgs extends runtim
   where?: Prisma.ServiceWhereInput
 }
 
+/**
+ * SitterProfileCountOutputType without action
+ */
+export type SitterProfileCountOutputTypeCountBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookingWhereInput
+}
+
 
 export type SitterProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -689,6 +787,7 @@ export type SitterProfileSelect<ExtArgs extends runtime.Types.Extensions.Interna
   sitterId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   services?: boolean | Prisma.SitterProfile$servicesArgs<ExtArgs>
+  bookings?: boolean | Prisma.SitterProfile$bookingsArgs<ExtArgs>
   _count?: boolean | Prisma.SitterProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sitterProfile"]>
 
@@ -728,6 +827,7 @@ export type SitterProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalA
 export type SitterProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   services?: boolean | Prisma.SitterProfile$servicesArgs<ExtArgs>
+  bookings?: boolean | Prisma.SitterProfile$bookingsArgs<ExtArgs>
   _count?: boolean | Prisma.SitterProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SitterProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -742,6 +842,7 @@ export type $SitterProfilePayload<ExtArgs extends runtime.Types.Extensions.Inter
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     services: Prisma.$ServicePayload<ExtArgs>[]
+    bookings: Prisma.$BookingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1147,6 +1248,7 @@ export interface Prisma__SitterProfileClient<T, Null = never, ExtArgs extends ru
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   services<T extends Prisma.SitterProfile$servicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SitterProfile$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookings<T extends Prisma.SitterProfile$bookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SitterProfile$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1605,6 +1707,30 @@ export type SitterProfile$servicesArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.ServiceScalarFieldEnum | Prisma.ServiceScalarFieldEnum[]
+}
+
+/**
+ * SitterProfile.bookings
+ */
+export type SitterProfile$bookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Booking
+   */
+  select?: Prisma.BookingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Booking
+   */
+  omit?: Prisma.BookingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookingInclude<ExtArgs> | null
+  where?: Prisma.BookingWhereInput
+  orderBy?: Prisma.BookingOrderByWithRelationInput | Prisma.BookingOrderByWithRelationInput[]
+  cursor?: Prisma.BookingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookingScalarFieldEnum | Prisma.BookingScalarFieldEnum[]
 }
 
 /**

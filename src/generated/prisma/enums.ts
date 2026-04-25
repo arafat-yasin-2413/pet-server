@@ -34,3 +34,13 @@ export const ServiceType = {
 } as const
 
 export type ServiceType = (typeof ServiceType)[keyof typeof ServiceType]
+
+
+export const BookingStatus = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  CANCELLED: 'CANCELLED',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type BookingStatus = (typeof BookingStatus)[keyof typeof BookingStatus]

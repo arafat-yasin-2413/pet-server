@@ -69,8 +69,31 @@ try {
     }    
 }
 
+const updateBookingStatus = async(req: Request, res: Response) => {
+    try {    
+        const result = await SitterService.updateBookingStatus(req.body.status, req.params?.id as string);
+        
+        return res.status(200).json({
+            success: true,
+            message: "Updating booking status is successfull.",
+            data: result,
+        });
+    } catch (error: any) {
+        // return res.status(error.statusCode||400).json({
+        //     success: false,
+        //     message: error.message || "User login failed",
+
+        // });
+        return res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
 export const SitterController = {
     createSitter,
     getAllSitter,
     getSingleSitter,
+    updateBookingStatus,
 };

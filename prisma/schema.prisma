@@ -26,6 +26,13 @@ enum ServiceType {
     SITTING
 }
 
+enum BookingStatus {
+    PENDING
+    CONFIRMED
+    CANCELLED
+    COMPLETED
+}
+
 // One User - one / multiple pets
 
 model User {
@@ -40,6 +47,7 @@ model User {
     updatedAt      DateTime        @updatedAt
     pets           Pet[]
     sitterProfiles SitterProfile[]
+    bookings       Booking[]
 
     @@index([status])
     @@map("users")
@@ -58,7 +66,8 @@ model Pet {
     updatedAt DateTime @updatedAt
 
     // relation : 1 to many (1 owner TO one or multiple pets)
-    owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+    owner    User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+    bookings Booking[]
 
     @@unique([name, breed, age, ownerId])
     @@map("pets")
@@ -75,6 +84,7 @@ model SitterProfile {
     sitterId String    @unique
     user     User      @relation(fields: [sitterId], references: [id])
     services Service[]
+    bookings Booking[]
 }
 
 model Service {
@@ -86,7 +96,34 @@ model Service {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    sitterId    String
-    
-    sitter SitterProfile @relation(fields: [sitterId], references: [id])
+    sitterId String
+
+    sitter   SitterProfile @relation(fields: [sitterId], references: [id])
+    bookings Booking[]
+}
+
+model Booking {
+    id String @id @default(uuid())
+
+    ownerId   String
+    sitterId  String
+    petId     String
+    serviceId String
+
+    startDate DateTime
+    endDate   DateTime
+
+    totalPrice Float
+    status     BookingStatus @default(PENDING)
+    notes      String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    owner   User          @relation(fields: [ownerId], references: [id])
+    sitter  SitterProfile @relation(fields: [sitterId], references: [id])
+    pet     Pet           @relation(fields: [petId], references: [id])
+    service Service       @relation(fields: [serviceId], references: [id])
+
+    @@map("bookings")
 }

@@ -233,6 +233,7 @@ export type ServiceWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Service"> | Date | string
   sitterId?: Prisma.StringFilter<"Service"> | string
   sitter?: Prisma.XOR<Prisma.SitterProfileScalarRelationFilter, Prisma.SitterProfileWhereInput>
+  bookings?: Prisma.BookingListRelationFilter
 }
 
 export type ServiceOrderByWithRelationInput = {
@@ -244,6 +245,7 @@ export type ServiceOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   sitterId?: Prisma.SortOrder
   sitter?: Prisma.SitterProfileOrderByWithRelationInput
+  bookings?: Prisma.BookingOrderByRelationAggregateInput
 }
 
 export type ServiceWhereUniqueInput = Prisma.AtLeast<{
@@ -258,6 +260,7 @@ export type ServiceWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Service"> | Date | string
   sitterId?: Prisma.StringFilter<"Service"> | string
   sitter?: Prisma.XOR<Prisma.SitterProfileScalarRelationFilter, Prisma.SitterProfileWhereInput>
+  bookings?: Prisma.BookingListRelationFilter
 }, "id">
 
 export type ServiceOrderByWithAggregationInput = {
@@ -296,6 +299,7 @@ export type ServiceCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   sitter: Prisma.SitterProfileCreateNestedOneWithoutServicesInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceUncheckedCreateInput = {
@@ -306,6 +310,7 @@ export type ServiceUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   sitterId: string
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceUpdateInput = {
@@ -316,6 +321,7 @@ export type ServiceUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sitter?: Prisma.SitterProfileUpdateOneRequiredWithoutServicesNestedInput
+  bookings?: Prisma.BookingUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceUncheckedUpdateInput = {
@@ -326,6 +332,7 @@ export type ServiceUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sitterId?: Prisma.StringFieldUpdateOperationsInput | string
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceCreateManyInput = {
@@ -405,6 +412,11 @@ export type ServiceSumOrderByAggregateInput = {
   price?: Prisma.SortOrder
 }
 
+export type ServiceScalarRelationFilter = {
+  is?: Prisma.ServiceWhereInput
+  isNot?: Prisma.ServiceWhereInput
+}
+
 export type ServiceCreateNestedManyWithoutSitterInput = {
   create?: Prisma.XOR<Prisma.ServiceCreateWithoutSitterInput, Prisma.ServiceUncheckedCreateWithoutSitterInput> | Prisma.ServiceCreateWithoutSitterInput[] | Prisma.ServiceUncheckedCreateWithoutSitterInput[]
   connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutSitterInput | Prisma.ServiceCreateOrConnectWithoutSitterInput[]
@@ -463,6 +475,20 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
+export type ServiceCreateNestedOneWithoutBookingsInput = {
+  create?: Prisma.XOR<Prisma.ServiceCreateWithoutBookingsInput, Prisma.ServiceUncheckedCreateWithoutBookingsInput>
+  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutBookingsInput
+  connect?: Prisma.ServiceWhereUniqueInput
+}
+
+export type ServiceUpdateOneRequiredWithoutBookingsNestedInput = {
+  create?: Prisma.XOR<Prisma.ServiceCreateWithoutBookingsInput, Prisma.ServiceUncheckedCreateWithoutBookingsInput>
+  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutBookingsInput
+  upsert?: Prisma.ServiceUpsertWithoutBookingsInput
+  connect?: Prisma.ServiceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ServiceUpdateToOneWithWhereWithoutBookingsInput, Prisma.ServiceUpdateWithoutBookingsInput>, Prisma.ServiceUncheckedUpdateWithoutBookingsInput>
+}
+
 export type ServiceCreateWithoutSitterInput = {
   id?: string
   serviceType: $Enums.ServiceType
@@ -470,6 +496,7 @@ export type ServiceCreateWithoutSitterInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  bookings?: Prisma.BookingCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceUncheckedCreateWithoutSitterInput = {
@@ -479,6 +506,7 @@ export type ServiceUncheckedCreateWithoutSitterInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutServiceInput
 }
 
 export type ServiceCreateOrConnectWithoutSitterInput = {
@@ -520,6 +548,62 @@ export type ServiceScalarWhereInput = {
   sitterId?: Prisma.StringFilter<"Service"> | string
 }
 
+export type ServiceCreateWithoutBookingsInput = {
+  id?: string
+  serviceType: $Enums.ServiceType
+  price: number
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sitter: Prisma.SitterProfileCreateNestedOneWithoutServicesInput
+}
+
+export type ServiceUncheckedCreateWithoutBookingsInput = {
+  id?: string
+  serviceType: $Enums.ServiceType
+  price: number
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sitterId: string
+}
+
+export type ServiceCreateOrConnectWithoutBookingsInput = {
+  where: Prisma.ServiceWhereUniqueInput
+  create: Prisma.XOR<Prisma.ServiceCreateWithoutBookingsInput, Prisma.ServiceUncheckedCreateWithoutBookingsInput>
+}
+
+export type ServiceUpsertWithoutBookingsInput = {
+  update: Prisma.XOR<Prisma.ServiceUpdateWithoutBookingsInput, Prisma.ServiceUncheckedUpdateWithoutBookingsInput>
+  create: Prisma.XOR<Prisma.ServiceCreateWithoutBookingsInput, Prisma.ServiceUncheckedCreateWithoutBookingsInput>
+  where?: Prisma.ServiceWhereInput
+}
+
+export type ServiceUpdateToOneWithWhereWithoutBookingsInput = {
+  where?: Prisma.ServiceWhereInput
+  data: Prisma.XOR<Prisma.ServiceUpdateWithoutBookingsInput, Prisma.ServiceUncheckedUpdateWithoutBookingsInput>
+}
+
+export type ServiceUpdateWithoutBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceType?: Prisma.EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sitter?: Prisma.SitterProfileUpdateOneRequiredWithoutServicesNestedInput
+}
+
+export type ServiceUncheckedUpdateWithoutBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceType?: Prisma.EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sitterId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
 export type ServiceCreateManySitterInput = {
   id?: string
   serviceType: $Enums.ServiceType
@@ -536,6 +620,7 @@ export type ServiceUpdateWithoutSitterInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bookings?: Prisma.BookingUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceUncheckedUpdateWithoutSitterInput = {
@@ -545,6 +630,7 @@ export type ServiceUncheckedUpdateWithoutSitterInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutServiceNestedInput
 }
 
 export type ServiceUncheckedUpdateManyWithoutSitterInput = {
@@ -557,6 +643,35 @@ export type ServiceUncheckedUpdateManyWithoutSitterInput = {
 }
 
 
+/**
+ * Count Type ServiceCountOutputType
+ */
+
+export type ServiceCountOutputType = {
+  bookings: number
+}
+
+export type ServiceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  bookings?: boolean | ServiceCountOutputTypeCountBookingsArgs
+}
+
+/**
+ * ServiceCountOutputType without action
+ */
+export type ServiceCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ServiceCountOutputType
+   */
+  select?: Prisma.ServiceCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ServiceCountOutputType without action
+ */
+export type ServiceCountOutputTypeCountBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookingWhereInput
+}
+
 
 export type ServiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -567,6 +682,8 @@ export type ServiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   updatedAt?: boolean
   sitterId?: boolean
   sitter?: boolean | Prisma.SitterProfileDefaultArgs<ExtArgs>
+  bookings?: boolean | Prisma.Service$bookingsArgs<ExtArgs>
+  _count?: boolean | Prisma.ServiceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["service"]>
 
 export type ServiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -604,6 +721,8 @@ export type ServiceSelectScalar = {
 export type ServiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serviceType" | "price" | "description" | "createdAt" | "updatedAt" | "sitterId", ExtArgs["result"]["service"]>
 export type ServiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sitter?: boolean | Prisma.SitterProfileDefaultArgs<ExtArgs>
+  bookings?: boolean | Prisma.Service$bookingsArgs<ExtArgs>
+  _count?: boolean | Prisma.ServiceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ServiceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sitter?: boolean | Prisma.SitterProfileDefaultArgs<ExtArgs>
@@ -616,6 +735,7 @@ export type $ServicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Service"
   objects: {
     sitter: Prisma.$SitterProfilePayload<ExtArgs>
+    bookings: Prisma.$BookingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1020,6 +1140,7 @@ readonly fields: ServiceFieldRefs;
 export interface Prisma__ServiceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   sitter<T extends Prisma.SitterProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SitterProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__SitterProfileClient<runtime.Types.Result.GetResult<Prisma.$SitterProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  bookings<T extends Prisma.Service$bookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Service$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1454,6 +1575,30 @@ export type ServiceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Services to delete.
    */
   limit?: number
+}
+
+/**
+ * Service.bookings
+ */
+export type Service$bookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Booking
+   */
+  select?: Prisma.BookingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Booking
+   */
+  omit?: Prisma.BookingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookingInclude<ExtArgs> | null
+  where?: Prisma.BookingWhereInput
+  orderBy?: Prisma.BookingOrderByWithRelationInput | Prisma.BookingOrderByWithRelationInput[]
+  cursor?: Prisma.BookingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookingScalarFieldEnum | Prisma.BookingScalarFieldEnum[]
 }
 
 /**

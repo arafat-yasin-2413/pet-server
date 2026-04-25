@@ -25,13 +25,13 @@ const createService = async(req: Request, res: Response) => {
     }
 };
 
-const getAllService = async(req: Request, res: Response) => {
+const getMyServices = async(req: Request, res: Response) => {
     try {    
-        const result = await serviceService.getAllService();
+        const result = await serviceService.getMyServices(req.user?.id);
         
         return res.status(200).json({
             success: true,
-            message: "Getting all sitter successfull.",
+            message: "Getting my services successfull.",
             data: result,
         });
     } catch (error: any) {
@@ -69,8 +69,31 @@ try {
     }    
 }
 
+const getAllServices = async(req:Request, res:Response) =>{
+try {    
+        const result = await serviceService.getAllServices();
+        
+        return res.status(200).json({
+            success: true,
+            message: "Getting service Successful.",
+            data: result,
+        });
+    } catch (error: any) {
+        // return res.status(error.statusCode||400).json({
+        //     success: false,
+        //     message: error.message || "User login failed",
+
+        // });
+        return res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }    
+}
+
 export const serviceController = {
     createService,
-    getAllService,
+    getMyServices,
+    getAllServices,
     getSingleService,
 };

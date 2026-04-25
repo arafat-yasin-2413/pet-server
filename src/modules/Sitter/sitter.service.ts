@@ -1,3 +1,4 @@
+import { BookingStatus } from "../../generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
 
 const createSitter = async (
@@ -58,8 +59,22 @@ const getSingleSitter = async(userId:string) =>{
 
 }
 
+const updateBookingStatus = async(status: BookingStatus, bookingId: string)=>{
+
+    const result = await prisma.booking.update({
+        where: {
+            id: bookingId,
+        },
+        data:{
+            status: status
+        }
+    });
+    return result;  
+}
+
 export const SitterService = {
     createSitter,
     getAllSitter,
     getSingleSitter,
+    updateBookingStatus,
 };

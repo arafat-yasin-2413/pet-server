@@ -28,10 +28,33 @@ const createService = async (
     return result;
 };
 
-const getAllService = async()=>{
-    const result = await prisma.sitterProfile.findMany();
+const getMyServices = async(userId:string) =>{
+    const sitterProfile = await prisma.sitterProfile.findUnique({
+        where:{
+            sitterId: userId,
+        },
+    });
+
+    if(!sitterProfile) {
+        throw new Error("Sitter profile not found.");
+    }
+
+    const result = await prisma.service.findMany({
+        where: {
+            sitterId: sitterProfile.id,
+        },
+        include: {
+            sitter: true,
+        }
+    });
+
     return result;
 }
+
+const getAllServices = async()=>{
+    return await prisma.service.findMany();
+}
+
 
 const getSingleService = async(userId:string) =>{
 
@@ -60,6 +83,7 @@ const getSingleService = async(userId:string) =>{
 
 export const serviceService = {
     createService,
-    getAllService,
+    getMyServices,
+    getAllServices,
     getSingleService,
 };
