@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { AuthService } from "./auth.service";
 import { success } from "zod";
 
-const createUser = async (req: Request, res: Response) => {
+const createUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         // console.log(req.body);
         const result = await AuthService.createUser(req.body);
@@ -11,17 +11,8 @@ const createUser = async (req: Request, res: Response) => {
             message: "User created successfully",
             data: result,
         });
-    } catch (error:any) {
-        // return res.status(error.statusCode || 400).json({
-        //     success: false,
-        //     message: error.message || "User creation failed",
-        // });
-
-        return res.status(400).json({
-            success: false,
-            message: error.message,
-            
-        })
+    } catch (error: any) {
+        next(error);
     }
 };
 
@@ -33,24 +24,24 @@ const userLogin = async (req: Request, res: Response) => {
         res.cookie("token", result.token, {
             secure: false,
             httpOnly: true,
-            sameSite: "strict" // none / lax
-        })
+            sameSite: "strict", // none / lax
+        });
 
         return res.status(200).json({
             success: true,
             message: "User logged in successfully",
             data: result,
         });
-    } catch (error:any) {
+    } catch (error: any) {
         // return res.status(error.statusCode||400).json({
         //     success: false,
         //     message: error.message || "User login failed",
-    
+
         // });
         return res.status(400).json({
             success: false,
-            message: error.message
-        })
+            message: error.message,
+        });
     }
 };
 
