@@ -79,7 +79,12 @@ const userLogin = async (payload: { email: string; password: string }) => {
     };
 };
 
+const getAllUser = async()=>{
+    return await prisma.user.findMany();
+}
+
 export const AuthService = {
     createUser,
     userLogin,
+    getAllUser,
 };
