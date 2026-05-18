@@ -36,7 +36,7 @@ const getMyServices = async(userId:string) =>{
     });
 
     if(!sitterProfile) {
-        throw new Error("Sitter profile not found.");
+        throw new Error("Sitter profile not found. Try again...");
     }
 
     const result = await prisma.service.findMany({
